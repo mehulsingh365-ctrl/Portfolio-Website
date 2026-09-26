@@ -10,24 +10,39 @@ import {
   CylinderCollider,
   RapierRigidBody,
 } from "@react-three/rapier";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const textureLoader = new THREE.TextureLoader();
 const imageUrls = [
-  "/images/react2.webp",
-  "/images/next2.webp",
-  "/images/node2.webp",
-  "/images/express.webp",
-  "/images/mongo.webp",
-  "/images/mysql.webp",
-  "/images/typescript.webp",
-  "/images/javascript.webp",
+  "/images/logos/crompton.png",
+  "/images/logos/adani.png",
+  "/images/logos/greenply.png",
+  "/images/logos/tooyumm.png",
+  "/images/logos/raymond.png",
+  "/images/logos/bandhan_bank.jpg",
+  "/images/logos/joy.jpeg",
+  "/images/logos/balaji_wafers.jpg",
+  "/images/logos/brinton_pharma.webp",
+  "/images/logos/kamasutra.png",
+  "/images/logos/diageo.png",
+  "/images/logos/bajaj_electricals.jpg",
+  "/images/logos/morphy_richards.jpg",
 ];
-const textures = imageUrls.map((url) => textureLoader.load(url));
+
+const textures = imageUrls.map((url) => {
+  const tex = textureLoader.load(url);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+});
 
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
-const spheres = [...Array(30)].map(() => ({
-  scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
+const spheres = [...Array(26)].map((_, i) => ({
+  scale: [0.75, 0.95, 0.85, 1.05, 0.9][i % 5],
+  materialIndex: i % imageUrls.length,
 }));
 
 type SphereProps = {
@@ -132,24 +147,15 @@ const TechStack = () => {
       const techEl = document.querySelector(".techstack");
       if (!techEl) return;
       const rect = techEl.getBoundingClientRect();
-      setIsActive(rect.top < window.innerHeight * 0.85 && rect.bottom > 0);
+      setIsActive(rect.top < window.innerHeight && rect.bottom > 0);
     };
-    document.querySelectorAll(".header a").forEach((elem) => {
-      const element = elem as HTMLAnchorElement;
-      element.addEventListener("click", () => {
-        const interval = setInterval(() => {
-          handleScroll();
-        }, 10);
-        setTimeout(() => {
-          clearInterval(interval);
-        }, 1000);
-      });
-    });
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const materials = useMemo(() => {
     return textures.map(
       (texture) =>
@@ -157,17 +163,20 @@ const TechStack = () => {
           map: texture,
           emissive: "#ffffff",
           emissiveMap: texture,
-          emissiveIntensity: 0.3,
-          metalness: 0.5,
-          roughness: 1,
-          clearcoat: 0.1,
+          emissiveIntensity: 0.35,
+          metalness: 0.4,
+          roughness: 0.8,
+          clearcoat: 0.15,
         })
     );
   }, []);
 
   return (
-    <div className="techstack">
-      <h2> Media & Marketing Stack</h2>
+    <div className="techstack" id="techstack">
+      <h2>Media & Marketing Stack</h2>
+      <p className="techstack-sub">
+        Brands & Enterprise Accounts Scaled Across Global & Regional Markets
+      </p>
 
       <Canvas
         shadows
@@ -191,8 +200,8 @@ const TechStack = () => {
           {spheres.map((props, i) => (
             <SphereGeo
               key={i}
-              {...props}
-              material={materials[Math.floor(Math.random() * materials.length)]}
+              scale={props.scale}
+              material={materials[props.materialIndex]}
               isActive={isActive}
             />
           ))}

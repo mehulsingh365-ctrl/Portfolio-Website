@@ -53,10 +53,16 @@
   gap: 50px;
 }
 .career-info h3 {
-  font-size: 48px;
+  font-size: 19px;
   margin: 0;
   font-weight: 500;
-  line-height: 45px;
+  line-height: 24px;
+  color: var(--accentColor);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  font-family: "Geist", sans-serif;
+  text-align: right;
+  padding-top: 4px;
 }
 
 .career-info h4 {
@@ -144,13 +150,14 @@
     font-size: 17px;
   }
   .career-info h3 {
-    font-size: 40px;
+    font-size: 17px;
+    line-height: 22px;
   }
   .career-info-box p {
     font-size: 14px;
   }
   .career-info-in {
-    width: 45%;
+    width: 48%;
     gap: 20px;
   }
 
@@ -199,7 +206,9 @@
     gap: 0px;
   }
   .career-info h3 {
-    font-size: 33px;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: left;
   }
   .career-info-in,
   .career-info-box p {

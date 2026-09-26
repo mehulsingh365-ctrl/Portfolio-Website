@@ -4,90 +4,84 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const projects = [
   {
-    title: "Ferrari Flagship GTM",
-    category: "Luxury Automotive",
-    tools: "London Flagship GTM Strategy, Market Penetration, High-Net-Worth Positioning",
-    image: "/images/project_ferrari.jpg",
-  },
-  {
-    title: "Chanel Omnichannel CRM",
-    category: "Luxury & Innovation",
-    tools: "Customer Journey Mapping, Smart Glasses Strategy, CRM Architecture",
-    image: "/images/project_chanel.jpg",
-  },
-  {
-    title: "Ralph Lauren Fragrances",
-    category: "L'Oréal Big Picture",
-    tools: "UK Media Plan & Buying, Category Launch, Multi-Channel Execution",
-    image: "/images/project_ralph_lauren.jpg",
-  },
-  {
-    title: "Johnnie Walker x Condé Nast",
-    category: "Diageo Premium Portfolio",
-    tools: "7M+ Unique Reach, Condé Nast Content Partnerships, DV360 Programmatic",
-    image: "/images/project_johnnie_walker.jpg",
-  },
-  {
-    title: "Too Yumm! 'To Cheer'",
+    title: "Cannes Lions: Too Yumm!",
     category: "Silver Cannes Lion Winner 🏆",
-    tools: "Outdoor & Ambient Media, High-Impact Festive Reach, Cannes Lions 2024",
-    image: "/images/project_cannes_lion.jpg",
+    tools: "Silver Cannes Lion 2024. Ambient & outdoor media campaign, high-impact cultural engagement across India.",
+    image: "/images/work_too_yumm.png",
   },
   {
-    title: "Performance & Programmatic",
-    category: "Omnicom & Madison World",
-    tools: "3.8x ROAS, 60% Lower CPA, Google Ads, Meta & DV360 Scaling",
-    image: "/images/project_performance.jpg",
+    title: "Diageo Johnnie Walker, Revibe",
+    category: "Diageo Premium Portfolio",
+    tools: "Condé Nast media partnerships, 7M+ unique reach, cultural storytelling & programmatic DV360 execution.",
+    image: "/images/work_johnnie_walker_revibe.png",
+  },
+  {
+    title: "Kamasutra Condoms: AI Chat & NFT",
+    category: "Web3 & Conversational AI Innovation",
+    tools: "Generative AI conversational chatbot & NFT brand activation, youth digital engagement & creative PR.",
+    image: "/images/work_kamasutra.png",
+  },
+  {
+    title: "Crompton Search Games",
+    category: "Search Marketing & SEO Innovation",
+    tools: "Gamified interactive search experience, organic SEO dominance, high-intent discovery & performance optimization.",
+    image: "/images/work_crompton.jpeg",
+  },
+  {
+    title: "ESCP Consultancy Projects",
+    category: "L'Oréal, Chanel & Ferrari",
+    tools: "Ferrari London flagship GTM strategy, Chanel omnichannel journey & smart glasses, Ralph Lauren fragrance launch via L'Oréal.",
+    image: "/images/work_escp.png",
   },
 ];
 
 const Work = () => {
   useGSAP(() => {
-  let translateX: number = 0;
+    const calculateDistance = () => {
+      const screenW = window.innerWidth;
+      const boxW = 500;
+      // Distance needed to place the 5th card (index 4) right in the center of the screen
+      const centerLastCard = 4 * boxW + boxW / 2 - screenW / 2;
+      const travel = Math.max(centerLastCard, 5 * boxW - screenW + 80);
+      return Math.max(travel, 1200);
+    };
 
-  function setTranslateX() {
-    const box = document.getElementsByClassName("work-box");
-    const rectLeft = document
-      .querySelector(".work-container")!
-      .getBoundingClientRect().left;
-    const rect = box[0].getBoundingClientRect();
-    const parentWidth = box[0].parentElement!.getBoundingClientRect().width;
-    let padding: number =
-      parseInt(window.getComputedStyle(box[0]).padding) / 2;
-    translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
-  }
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".work-section",
+        start: "top top",
+        end: "+=3600",
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        id: "work-pin",
+      },
+    });
 
-  setTranslateX();
+    // 1. Horizontally glide all cards from 01 through 05 until Card 05 is centered
+    timeline.to(".work-flex", {
+      x: () => -calculateDistance(),
+      ease: "power1.inOut",
+      duration: 0.65,
+    });
 
-  let timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".work-section",
-      start: "top top",
-      end: `+=${translateX}`, // Use actual scroll width
-      scrub: true,
-      pin: true,
-      id: "work",
-    },
-  });
+    // 2. Generous pause on the 5th card so the viewer fully sees and reads Card 5 before unpinning
+    timeline.to({}, { duration: 0.35 });
 
-  timeline.to(".work-flex", {
-    x: -translateX,
-    ease: "none",
-  });
+    return () => {
+      timeline.kill();
+      ScrollTrigger.getById("work-pin")?.kill();
+    };
+  }, []);
 
-  // Clean up (optional, good practice)
-  return () => {
-    timeline.kill();
-    ScrollTrigger.getById("work")?.kill();
-  };
-}, []);
   return (
     <div className="work-section" id="work">
-      <div className="work-container section-container">
+      <div className="work-container">
         <h2>
           My <span>Work</span>
         </h2>
@@ -116,3 +110,4 @@ const Work = () => {
 };
 
 export default Work;
+

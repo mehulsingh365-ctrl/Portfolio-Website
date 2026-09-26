@@ -21,9 +21,7 @@ const Contact = () => {
               </a>
             </p>
             <h4>Location</h4>
-            <p>
-              Paris, France
-            </p>
+            <p>Paris, France</p>
           </div>
           <div className="contact-box">
             <h4>Social</h4>
