@@ -18,6 +18,9 @@ const setLighting = (scene: THREE.Scene) => {
   pointLight.castShadow = true;
   scene.add(pointLight);
 
+  const ambientLight = new THREE.AmbientLight(0xfff2e6, 0.3);
+  scene.add(ambientLight);
+
   new RGBELoader()
     .setPath("/models/")
     .load("char_enviorment.hdr", function (texture) {
@@ -44,6 +47,11 @@ const setLighting = (scene: THREE.Scene) => {
     });
     gsap.to(directionalLight, {
       intensity: 1,
+      duration: duration,
+      ease: ease,
+    });
+    gsap.to(ambientLight, {
+      intensity: 0.9,
       duration: duration,
       ease: ease,
     });

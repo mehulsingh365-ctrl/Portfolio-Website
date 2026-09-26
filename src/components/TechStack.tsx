@@ -129,11 +129,10 @@ const TechStack = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+      const techEl = document.querySelector(".techstack");
+      if (!techEl) return;
+      const rect = techEl.getBoundingClientRect();
+      setIsActive(rect.top < window.innerHeight * 0.85 && rect.bottom > 0);
     };
     document.querySelectorAll(".header a").forEach((elem) => {
       const element = elem as HTMLAnchorElement;
@@ -168,7 +167,7 @@ const TechStack = () => {
 
   return (
     <div className="techstack">
-      <h2> My Techstack</h2>
+      <h2> Media & Marketing Stack</h2>
 
       <Canvas
         shadows

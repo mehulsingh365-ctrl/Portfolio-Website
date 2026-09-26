@@ -43,19 +43,24 @@ const Navbar = () => {
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          Logo
+          Mehul Singh
         </a>
         <a
-          href="mailto:example@mail.com"
+          href="mailto:mehul.singh@edu.escp.eu"
           className="navbar-connect"
           data-cursor="disable"
         >
-          example@mail.com
+          mehul.singh@edu.escp.eu
         </a>
         <ul>
           <li>
             <a data-href="#about" href="#about">
               <HoverLinks text="ABOUT" />
+            </a>
+          </li>
+          <li>
+            <a data-href="#career" href="#career">
+              <HoverLinks text="EXPERIENCE" />
             </a>
           </li>
           <li>

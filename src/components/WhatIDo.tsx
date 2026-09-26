@@ -87,24 +87,25 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
 
             <div className="what-content-in">
-              <h3>DEVELOP</h3>
-              <h4>Description</h4>
+              <h3>MEDIA & PERFORMANCE</h3>
+              <h4>Paid Media & Growth</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae.
+                Leading full-funnel media planning, buying, and execution across
+                Google Ads, Meta, and DV360 programmatic. Delivering up to 3.8x+
+                ROAS, lowering CPA by 60%, and scaling reach to 9M+ audiences.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">JavaScript</div>
-                <div className="what-tags">TypeScript</div>
-                <div className="what-tags">Three.js</div>
-                <div className="what-tags">React</div>
-                <div className="what-tags">Css</div>
-                <div className="what-tags">Node.js</div>
-                <div className="what-tags">Next.js</div>
-                <div className="what-tags">Express.js</div>
-                <div className="what-tags">PHP</div>
-                <div className="what-tags">MySql</div>
+                <div className="what-tags">Google Ads</div>
+                <div className="what-tags">Meta Ads</div>
+                <div className="what-tags">DV360 Programmatic</div>
+                <div className="what-tags">Media Planning</div>
+                <div className="what-tags">Media Buying</div>
+                <div className="what-tags">GA4 & Analytics</div>
+                <div className="what-tags">A/B Testing</div>
+                <div className="what-tags">Dashboards & BI</div>
+                <div className="what-tags">ROAS Optimization</div>
+                <div className="what-tags">Paid Social</div>
               </div>
               <div className="what-arrow"></div>
             </div>
@@ -128,22 +129,23 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>DESIGN</h3>
-              <h4>Description</h4>
+              <h3>BRAND & STRATEGY</h3>
+              <h4>Creative & Consulting</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae
+                Crafting go-to-market strategies, omnichannel customer journeys,
+                and high-impact brand partnerships for global luxury and FMCG
+                powerhouses including Ferrari, Chanel, Ralph Lauren, and Diageo.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">Blender</div>
-                <div className="what-tags">Zbrush</div>
-                <div className="what-tags">UI Design</div>
-                <div className="what-tags">Motion</div>
-                <div className="what-tags">Rigging</div>
-                <div className="what-tags">3D Animation</div>
-                <div className="what-tags">Character Design</div>
-                <div className="what-tags">Modelling</div>
+                <div className="what-tags">Brand Strategy</div>
+                <div className="what-tags">GTM Strategy</div>
+                <div className="what-tags">Luxury Marketing</div>
+                <div className="what-tags">Omnichannel CRM</div>
+                <div className="what-tags">Creative Production</div>
+                <div className="what-tags">Content Partnerships</div>
+                <div className="what-tags">P&L Management</div>
+                <div className="what-tags">Team Leadership</div>
               </div>
               <div className="what-arrow"></div>
             </div>
