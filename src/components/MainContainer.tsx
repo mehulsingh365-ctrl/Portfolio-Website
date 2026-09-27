@@ -1,5 +1,6 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 import About from "./About";
+import Brands from "./Brands";
 import Career from "./Career";
 import Contact from "./Contact";
 import Cursor from "./Cursor";
@@ -40,7 +41,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <About />
             <WhatIDo />
             <Career />
-            <Work />
+            <Work /><Brands />
             <Contact />
           </div>
         </div>

@@ -1,0 +1,194 @@
+.brands-section {
+  position: relative;
+  z-index: 10;
+  background-color: var(--backgroundColor);
+  padding: 90px 0 70px;
+  overflow: hidden;
+}
+/* faint tech grid behind the section, fading out at the edges */
+.brands-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(194, 164, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(194, 164, 255, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  pointer-events: none;
+}
+.brands-heading {
+  position: relative;
+  margin: 0 auto 40px;
+}
+.brands-eyebrow {
+  font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--accentColor);
+  opacity: 0.8;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+.brands-heading h2 {
+  font-size: 64px;
+  font-weight: 500;
+  margin: 0;
+}
+.brands-heading h2 > span {
+  color: var(--accentColor);
+}
+
+.brands-marquee {
+  position: relative;
+  overflow: hidden;
+  padding: 12px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.brands-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: brands-scroll 42s linear infinite;
+}
+.brands-track-reverse {
+  animation-direction: reverse;
+  animation-duration: 48s;
+}
+.brands-marquee:hover .brands-track {
+  animation-play-state: paused;
+}
+@keyframes brands-scroll {
+  to {
+    transform: translateX(calc(-50% - 10px));
+  }
+}
+
+/* glass tile with corner brackets */
+.brand-tile {
+  position: relative;
+  flex: 0 0 auto;
+  width: 210px;
+  height: 124px;
+  padding: 22px 26px 28px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(194, 164, 255, 0.16);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+.brand-tile::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--accentColor), var(--accentColor)) top left / 12px 1.5px no-repeat,
+    linear-gradient(var(--accentColor), var(--accentColor)) top left / 1.5px 12px no-repeat,
+    linear-gradient(var(--accentColor), var(--accentColor)) bottom right / 12px 1.5px no-repeat,
+    linear-gradient(var(--accentColor), var(--accentColor)) bottom right / 1.5px 12px no-repeat;
+  opacity: 0.45;
+  transition: opacity 0.35s ease;
+}
+/* light sweep on hover */
+.brand-tile::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(194, 164, 255, 0.22), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+.brand-tile:hover {
+  border-color: rgba(194, 164, 255, 0.6);
+  box-shadow: 0 0 28px rgba(157, 110, 255, 0.28), inset 0 0 18px rgba(157, 110, 255, 0.12);
+  transform: translateY(-4px);
+}
+.brand-tile:hover::before {
+  opacity: 1;
+}
+.brand-tile:hover::after {
+  animation: brand-sweep 0.9s ease;
+}
+@keyframes brand-sweep {
+  to {
+    left: 130%;
+  }
+}
+
+/* logos shown as clean white marks, glowing on hover */
+.brand-tile img {
+  max-width: 100%;
+  max-height: 62px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.78;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+}
+.brand-tile:hover img {
+  opacity: 1;
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(194, 164, 255, 0.8));
+}
+.brand-idx,
+.brand-name {
+  position: absolute;
+  font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(234, 229, 236, 0.4);
+  transition: color 0.35s ease;
+}
+.brand-idx {
+  top: 9px;
+  right: 12px;
+}
+.brand-name {
+  bottom: 8px;
+  left: 14px;
+}
+.brand-tile:hover .brand-idx,
+.brand-tile:hover .brand-name {
+  color: var(--accentColor);
+}
+
+@media only screen and (max-width: 900px) {
+  .brands-heading h2 {
+    font-size: 40px;
+  }
+  .brand-tile {
+    width: 158px;
+    height: 96px;
+    padding: 16px 18px 22px;
+  }
+  .brand-tile img {
+    max-height: 46px;
+  }
+  .brands-track {
+    gap: 14px;
+  }
+  @keyframes brands-scroll {
+    to {
+      transform: translateX(calc(-50% - 7px));
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brands-track,
+  .brand-tile:hover::after {
+    animation: none;
+  }
+}
