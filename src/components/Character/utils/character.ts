@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { DRACOLoader, GLTF, GLTFLoader } from "three-stdlib";
 import { setCharTimeline, setAllTimeline } from "../../utils/GsapScroll";
 import { decryptFile } from "./decrypt";
-import { addAccessoriesToCharacter } from "./createGlasses";
+import { addAccessoriesToCharacter } from "./createGlasses"; import { personaliseCharacter } from "./curlyHair";
 
 const setCharacter = (
   renderer: THREE.WebGLRenderer,
@@ -123,7 +123,7 @@ const setCharacter = (
               character.getObjectByName("spine006") ||
               character.getObjectByName("spine.006") ||
               null;
-            addAccessoriesToCharacter(character, headBone);
+            addAccessoriesToCharacter(character, headBone); personaliseCharacter(character);
 
             // Compile shaders after all materials and accessories are mounted
             await renderer.compileAsync(character, camera, scene);

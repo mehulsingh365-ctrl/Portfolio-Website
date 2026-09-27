@@ -41,41 +41,49 @@ const projects = [
 
 const Work = () => {
   useGSAP(() => {
-    const calculateDistance = () => {
-      const screenW = window.innerWidth;
-      const boxW = 500;
-      // Distance needed to place the 5th card (index 4) right in the center of the screen
-      const centerLastCard = 4 * boxW + boxW / 2 - screenW / 2;
-      const travel = Math.max(centerLastCard, 5 * boxW - screenW + 80);
-      return Math.max(travel, 1200);
-    };
+    const mm = gsap.matchMedia();
 
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".work-section",
-        start: "top top",
-        end: "+=3600",
-        scrub: true,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        id: "work-pin",
-      },
+    mm.add("(min-width: 768px)", () => {
+      const calculateDistance = () => {
+        const screenW = window.innerWidth;
+        const boxW = 500;
+        // Distance needed to place the 5th card (index 4) right in the center of the screen
+        const centerLastCard = 4 * boxW + boxW / 2 - screenW / 2;
+        const travel = Math.max(centerLastCard, 5 * boxW - screenW + 80);
+        return Math.max(travel, 1200);
+      };
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".work-section",
+          start: "top top",
+          end: "+=3600",
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          id: "work-pin",
+        },
+      });
+
+      // 1. Horizontally glide all cards from 01 through 05 until Card 05 is centered
+      timeline.to(".work-flex", {
+        x: () => -calculateDistance(),
+        ease: "power1.inOut",
+        duration: 0.65,
+      });
+
+      // 2. Generous pause on the 5th card so the viewer fully sees and reads Card 5 before unpinning
+      timeline.to({}, { duration: 0.35 });
+
+      return () => {
+        timeline.kill();
+        ScrollTrigger.getById("work-pin")?.kill();
+      };
     });
-
-    // 1. Horizontally glide all cards from 01 through 05 until Card 05 is centered
-    timeline.to(".work-flex", {
-      x: () => -calculateDistance(),
-      ease: "power1.inOut",
-      duration: 0.65,
-    });
-
-    // 2. Generous pause on the 5th card so the viewer fully sees and reads Card 5 before unpinning
-    timeline.to({}, { duration: 0.35 });
 
     return () => {
-      timeline.kill();
-      ScrollTrigger.getById("work-pin")?.kill();
+      mm.revert();
     };
   }, []);
 

@@ -4,6 +4,7 @@
   margin: auto;
   position: relative;
   height: var(--vh);
+  overflow: hidden;
 }
 .landing-container {
   width: var(--cWidth);

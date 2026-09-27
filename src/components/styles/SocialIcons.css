@@ -101,3 +101,12 @@ div.resume-button span {
     margin-top: -1.5px;
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .resume-button {
+    display: none !important;
+  }
+  .icons-section {
+    pointer-events: none;
+  }
+}
