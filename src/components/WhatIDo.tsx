@@ -129,7 +129,7 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>BRAND & STRATEGY</h3>
+              <h3>BRANDING & STRATEGY</h3>
               <h4>Creative & Consulting</h4>
               <p>
                 Crafting go-to-market strategies, omnichannel customer journeys,

@@ -44,7 +44,7 @@ const Contact = () => {
           </div>
           <div className="contact-box">
             <h2>
-              Digital Marketing & Media Strategist <br /> <span>Mehul Singh</span>
+              Brand & Media Strategist <br /> <span>Mehul Singh</span>
             </h2>
             <h5>
               <MdCopyright /> 2026
