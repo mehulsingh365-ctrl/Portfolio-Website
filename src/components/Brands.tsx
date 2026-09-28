@@ -24,7 +24,7 @@ const Brands = () => {
   return (
     <div className="brands-section" id="brands">
       <div className="brands-heading section-container">
-        <p className="brands-eyebrow">// selected clients · {brands.length} brands</p>
+
         <h2>
           Brands I've <span>worked with</span>
         </h2>
